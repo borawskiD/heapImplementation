@@ -51,21 +51,21 @@ void swapDown(int index,int *&heap, int size){
             swapDown(max,tab,size);
         }
     }
-
-    std::cout<<"Tablica po naszych działaniach wyglada następujaco:"<<std::endl;
-    tabDisplayer(heap,size);
-    std::cout<<std::endl<<"---"<<std::endl;
-    std::cout<<std::endl;
 }
-void heapify(int index,int *&heap, int size, int whereAmI){
-
+void heapify(int size,int *&heapToMade){
+    for (int i = size/2; i>=0; i--){
+        int * tab = (int *)heapToMade;
+        swapDown(i,tab,size);
+    }
 }
 int main() {
     int values[] = {5, 17, 12, 13, 6, 9, 10, 7, 11, 4, 2, 8};
     int size = sizeof(values)/sizeof(int);
     int * tab = (int *) values;
     //tabExpander(tab,size,69);
-    swapDown(0,tab,size);
+    //swapDown(0,tab,size);
+    heapify(size,tab);
+    std::cout<<"Ostateczny wyglad naszego drzewa: ";
     tabDisplayer(tab,size);
 
     return 0;
