@@ -62,6 +62,7 @@ void heapify(int size,int *&heapToMade){
     std::cout<<std::endl;
     tabDisplayer(heapToMade,size);
 }
+
 void removeElement(int &size, int *&heap){
     std::cout<<std::endl<<"---"<<std::endl;
     std::cout<<"Usuwanie elementu"<<std::endl;
@@ -127,6 +128,17 @@ void addElement(int &size, int *&heap, int value){
     tabDisplayer(tab,size);
     heap = *& tab;
 }
+void heapSort(int *&heap, int size){
+    int unsortedSize = size;
+    while (unsortedSize > 0){
+        int helper = heap[0];
+        heap[0] = heap[unsortedSize-1];
+        heap[unsortedSize] = helper;
+        unsortedSize--;
+        heapify(unsortedSize,heap);
+    }
+    tabDisplayer(heap,size);
+}
 int main() {
     int values[] = {5, 17, 12, 13, 6, 9, 10, 7, 11, 4, 2, 8};
     int size = sizeof(values)/sizeof(int);
@@ -144,6 +156,7 @@ int main() {
         std::cout<<"1. Dodaj element"<<std::endl;
         std::cout<<"2. Usun element"<<std::endl;
         std::cout<<"3. Wyswietl drzewo"<<std::endl;
+        std::cout<<"4. Posortuj przez kopcowanie"<<std::endl;
         std::cout<<"Wybor: ";
         std::cin >> choice;
         switch (choice){
@@ -161,7 +174,12 @@ int main() {
             case 3:
                 tabDisplayer(tab,size);
                 break;
-
+            case 4:
+                heapSort(tab,size);
+                break;
+            default:
+                std::cout<<"Unknown option, try again!"<<std::endl;
+                break;
         }
     }
 
