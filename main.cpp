@@ -133,7 +133,7 @@ void heapSort(int *&heap, int size){
     while (unsortedSize > 0){
         int helper = heap[0];
         heap[0] = heap[unsortedSize-1];
-        heap[unsortedSize] = helper;
+        heap[unsortedSize-1] = helper;
         unsortedSize--;
         heapify(unsortedSize,heap);
     }
